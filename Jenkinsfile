@@ -9,38 +9,39 @@ pipeline{
       maven 'Maven3'
      }
 
-     stages{
-       stage("cleaning workspace"){
-         steps {
-	    cleanWs()
+     
+    stages{
+        stage("Cleanup Workspace"){
+            steps {
+                cleanWs()
+            }
 
-	 }
-       }
-      
-        stage("checkout from SCM"){
-	  steps {
-	     git branch: 'main', credentialsId: 'github', url: 'https://github.com/ajit13197/complete-prodcution-e2e-pipeline.git'
-	  }
+        }
+    
+        stage("Checkout from SCM"){
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/ajit13197/complete-prodcution-e2e-pipeline.git'
+            }
 
-	}
-   
-        stage("Building the application"){
-	  steps{
-	    sh "mvn clean package"
-	  }
+        }
 
-	}
-          
-	stage("testing the application"){
-	  steps {
-	    sh "mvn test"
+        stage("Build Application"){
+            steps {
+                sh "mvn clean package"
+            }
 
+        }
+
+        stage("Test Application"){
+            steps {
+                sh "mvn test"
+            }
+
+ 
 	  }
 
 	}
 	
 
    }
-
- }
  
