@@ -29,6 +29,8 @@ pipeline{
 	    sh "mvn clean install"
 	  }
 
+	}
+          
 	stage("testing the application"){
 	  steps {
 	    sh "mvn test"
