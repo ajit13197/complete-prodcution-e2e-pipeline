@@ -23,6 +23,19 @@ pipeline{
 	  }
 
 	}
-    }
+   
+        stage("Building the application"){
+	  steps{
+	    sh "mvn clean install"
+	  }
+
+	stage("testing the application"){
+	  steps {
+	    sh "mvn test"
+
+	  }
+
+	}
+	
 
    }
